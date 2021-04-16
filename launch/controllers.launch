@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- Load selected controllers for arm-->
+<launch>
+    <rosparam command="load" file="$(find two-link-manipulator)/config/joints.yaml"/>
+    <!-- Controller -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+          ns="/manipulator" args="--namespace=/manipulator
+		joint_state_controller
+        joint1_position_controller
+        joint2_position_controller
+		--timeout 60"/>
+
+</launch>
