@@ -11,12 +11,12 @@
                     <box size="${size}"/>
                 </geometry>
             </visual>
-            <collision>
+<!--             <collision>
                 <origin xyz="${xyz}" rpy="${rpy}"/>
                 <geometry>
                     <box size="${size}"/>
                 </geometry>
-            </collision>
+            </collision> -->
             <inertial>
                 <origin xyz="${xyz}" rpy="${rpy}"/>
                 <mass value="1"/>
@@ -57,33 +57,33 @@
 
     <!--LINKS-->
     <link name="world"/>
-    <box_link name="base_link" xyz="0 0 0.5" rpy="0 0 0" size="0.2 0.2 1"/>
-    <box_link name="link1" xyz="0 0 0.3" rpy="0 0 0" size="0.05 0.05 0.6"/>
-    <box_link name="link2" xyz="0 0 0.1625" rpy="0 0 0" size="0.05 0.05 0.375"/>
+    <box_link name="base_link" xyz="0.1 0.1 1.05" rpy="0 0 0" size="0.2 0.2 2.1"/>
+    <box_link name="link1" xyz="0.05 0.05 0.5" rpy="0 0 0" size="0.1 0.1 1.0"/>
+    <box_link name="link2" xyz="0.05 0.05 0.5" rpy="0 0 0" size="0.1 0.1 1.0"/>
 
     <!--JOINTS-->
     <joint name="base_world" type="fixed">
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="-0.1 -0.1 0" rpy="0 0 0"/>
         <parent link="world"/>
         <child link="base_link"/>
     </joint>
-    <revolute_joint name="joint1" xyz="0 0.125 0.95" rpy="0 ${DEG2RAD * 90} 0" parent="base_link" child="link1"
+    <revolute_joint name="joint1" xyz="0 0.25 2.1" rpy="0 -${DEG2RAD * 90} 0" parent="base_link" child="link1"
                     axis="0 1 0"
                     lower="${-DEG2RAD * 179.9}" upper="${DEG2RAD * 180}" vel="1"/>
-    <revolute_joint name="joint2" xyz="0 0.05 0.575" rpy="0 0 0" parent="link1" child="link2" axis="0 1 0"
+    <revolute_joint name="joint2" xyz="0 0.1 1" rpy="0 0 0" parent="link1" child="link2" axis="0 1 0"
                     lower="${-DEG2RAD * 179.9}" upper="${DEG2RAD * 180}" vel="1"/>
 
     <joint_transmission joint="joint1"/>
     <joint_transmission joint="joint2"/>
 
     <gazebo reference="base_link">
-        <material>Gazebo/White</material>
+        <material>Gazebo/Black</material>
     </gazebo>
     <gazebo reference="link1">
-        <material>Gazebo/Orange</material>
+        <material>Gazebo/Red</material>
     </gazebo>
     <gazebo reference="link2">
-        <material>Gazebo/White</material>
+        <material>Gazebo/Green</material>
     </gazebo>
 
     <gazebo>
